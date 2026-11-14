@@ -1,0 +1,16 @@
+INSERT INTO public.pointage_demandes (
+    "ID_Employe", type_demande, date_concernee, heure_matin, heure_deb_pause, heure_fin_pause, heure_soir, justification_demandee, commentaire_salarie
+)
+SELECT
+    e."ID_Employe",
+    'CORRECTION_POINTAGE',
+    NULLIF({{ Date_Corr.formattedDate || '' }}::text, '')::date,
+    NULLIF({{ (Inp_Corr_Matin.text || '').trim() }}::text, '')::time,
+    NULLIF({{ (Inp_Corr_DebPause.text || '').trim() }}::text, '')::time,
+    NULLIF({{ (Inp_Corr_FinPause.text || '').trim() }}::text, '')::time,
+    NULLIF({{ (Inp_Corr_Soir.text || '').trim() }}::text, '')::time,
+    NULLIF({{ Sel_Corr_Motif.selectedOptionValue || '' }}::text, ''),
+    NULLIF({{ (Inp_Comm_Corr.text || '').trim() }}::text, '')
+FROM public."Employes" e
+WHERE LOWER(TRIM(COALESCE(NULLIF(e."Email_Perso", ''), e."Email"))) = LOWER(TRIM({{ appsmith.user.email }}::text))
+LIMIT 1;

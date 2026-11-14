@@ -1,0 +1,6 @@
+SELECT c.*
+FROM public.v_pointages_calculs c
+JOIN public."Employes" e ON e."ID_Employe" = c."ID_Employe"
+WHERE LOWER(TRIM(COALESCE(NULLIF(e."Email_Perso", ''), e."Email"))) = LOWER(TRIM({{ appsmith.user.email }}::text))
+ORDER BY c.date_pointage DESC
+LIMIT 60;

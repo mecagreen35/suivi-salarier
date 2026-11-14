@@ -1,0 +1,5 @@
+SELECT t.*
+FROM public.v_pointages_tableau_de_bord t
+JOIN public."Employes" e ON e."ID_Employe" = t."ID_Employe"
+WHERE LOWER(TRIM(COALESCE(NULLIF(e."Email_Perso", ''), e."Email"))) = LOWER(TRIM({{ appsmith.user.email }}::text))
+LIMIT 1;

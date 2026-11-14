@@ -1,0 +1,54 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 50,
+  "boxShadow": "none",
+  "buttonColor": "#16a34a",
+  "buttonVariant": "SECONDARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "dmprvcedqh",
+  "labelStyle": "BOLD",
+  "labelTextSize": "1rem",
+  "leftColumn": 1,
+  "minWidth": 120,
+  "mobileBottomRow": 49,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 23,
+  "mobileTopRow": 45,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  (async () => {\n    if (!Date_Corr.formattedDate) {\n      showAlert('Veuillez sélectionner une date.', 'warning');\n      return;\n    }\n    if (!Inp_Corr_Matin.text && !Inp_Corr_DebPause.text && !Inp_Corr_FinPause.text && !Inp_Corr_Soir.text) {\n      showAlert('Renseignez au moins une heure à corriger.', 'warning');\n      return;\n    }\n    try {\n      await Send_Demande_Correction.run();\n      showAlert('✅ Demande de correction transmise !', 'success');\n      await Get_Mes_Demandes.run();\n      await storeValue('ecran', 'ACCUEIL');\n    } catch (err) {\n      showAlert('Erreur : ' + (err.message || err), 'error');\n    }\n  })()\n}}",
+  "parentColumnSpace": 6.21875,
+  "parentId": "2cqkjbvqux",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "text": "✅ Envoyer la correction",
+  "topRow": 45,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "lite99le3z",
+  "widgetName": "Btn_Valider_Corr"
+}

@@ -1,0 +1,13 @@
+INSERT INTO public.pointage_demandes (
+    "ID_Employe", type_demande, date_concernee, type_absence, periode_absence, commentaire_salarie
+)
+SELECT
+    e."ID_Employe",
+    'ABSENCE',
+    NULLIF({{ Date_Abs.formattedDate || '' }}::text, '')::date,
+    NULLIF({{ Sel_Type_Abs.selectedOptionValue || '' }}::text, ''),
+    COALESCE(NULLIF({{ Sel_Periode_Abs.selectedOptionValue || '' }}::text, ''), 'JOURNEE'),
+    NULLIF({{ (Inp_Comm_Abs.text || '').trim() }}::text, '')
+FROM public."Employes" e
+WHERE LOWER(TRIM(COALESCE(NULLIF(e."Email_Perso", ''), e."Email"))) = LOWER(TRIM({{ appsmith.user.email }}::text))
+LIMIT 1;

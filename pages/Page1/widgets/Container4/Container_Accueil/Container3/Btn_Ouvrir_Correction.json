@@ -1,0 +1,54 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 13,
+  "boxShadow": "none",
+  "buttonColor": "#d97706",
+  "buttonVariant": "SECONDARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "t4u61yvdbi",
+  "labelStyle": "BOLD",
+  "labelTextSize": "1rem",
+  "leftColumn": 2,
+  "minWidth": 120,
+  "mobileBottomRow": 12,
+  "mobileLeftColumn": 22,
+  "mobileRightColumn": 38,
+  "mobileTopRow": 8,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  resetWidget('Container_Correction', true).then(() => {\n    storeValue('ecran', 'CORRECTION');\n  });\n}}",
+  "parentColumnSpace": 6.21875,
+  "parentId": "xozst727e1",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 62,
+  "text": "✏️ Signaler un oubli de pointage",
+  "topRow": 8,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "dmjl4puoew",
+  "widgetName": "Btn_Ouvrir_Correction"
+}
