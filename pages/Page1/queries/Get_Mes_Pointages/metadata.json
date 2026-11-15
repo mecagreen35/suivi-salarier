@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT c.*\nFROM public.v_pointages_calculs c\nJOIN public.\"Employes\" e ON e.\"ID_Employe\" = c.\"ID_Employe\"\nWHERE LOWER(TRIM(COALESCE(NULLIF(e.\"Email_Perso\", ''), e.\"Email\"))) = LOWER(TRIM({{ appsmith.user.email }}::text))\nORDER BY c.date_pointage DESC\nLIMIT 60;",
+      "body": "SELECT c.*\nFROM public.v_pointages_calculs c\nJOIN public.\"Employes\" e ON e.\"ID_Employe\" = c.\"ID_Employe\"\nWHERE LOWER(TRIM(COALESCE(NULLIF(e.\"Email_Perso\", ''), e.\"Email\"))) = LOWER(TRIM({{ appsmith.user.email }}::text))\nORDER BY c.date_pointage DESC\nLIMIT 100;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
