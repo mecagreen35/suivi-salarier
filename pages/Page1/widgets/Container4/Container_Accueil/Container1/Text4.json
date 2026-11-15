@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 24,
+  "bottomRow": 25,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -17,6 +17,7 @@
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicPropertyPathList": [],
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
   "fontSize": "1rem",
@@ -43,9 +44,9 @@
   "responsiveBehavior": "fill",
   "rightColumn": 64,
   "shouldTruncate": false,
-  "text": "Retards / Injustifiés : {{ Get_Mon_Compteur.data[0]?.total_heures_injustifiees_hms || \"0:00:00\" }}",
+  "text": "Retards / Injustifiés (Depuis janv. {{ moment().format('YYYY') }}) : {{\n  (() => {\n    const hms = String(Get_Mon_Compteur.data[0]?.total_heures_injustifiees_hms || \"0:00:00\").trim();\n    const estPositif = hms !== \"\" && hms !== \"0:00:00\" && hms !== \"00:00:00\" && !hms.startsWith(\"-\");\n    const color = estPositif ? \"#dc2626\" : \"#18181b\";\n    return `<span style=\"color: ${color};\">${hms}</span>`;\n  })()\n}}",
   "textAlign": "CENTER",
-  "textColor": "#18181b",
+  "textColor": "",
   "topRow": 20,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
