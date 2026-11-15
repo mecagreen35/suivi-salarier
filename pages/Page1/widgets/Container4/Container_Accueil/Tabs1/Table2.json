@@ -33,6 +33,7 @@
     }
   },
   "columnOrder": [
+    "statut",
     "ID_Demande",
     "ID_Employe",
     "type_demande",
@@ -46,13 +47,12 @@
     "heure_soir",
     "motif",
     "commentaire_salarie",
-    "statut",
     "commentaire_rh",
     "date_creation",
     "date_traitement",
     "justification_demandee"
   ],
-  "columnUpdatedAt": 1794725855575,
+  "columnUpdatedAt": 1794728690958,
   "columnWidthMap": {
     "customColumn1": 199,
     "justification_demandee": 225,
@@ -132,12 +132,18 @@
     },
     {
       "key": "primaryColumns.customColumn1.computedValue"
+    },
+    {
+      "key": "primaryColumns.statut.textColor"
     }
   ],
   "dynamicHeight": "FIXED",
   "dynamicPropertyPathList": [
     {
       "key": "tableData"
+    },
+    {
+      "key": "primaryColumns.statut.textColor"
     }
   ],
   "dynamicTriggerPathList": [],
@@ -421,7 +427,7 @@
       "allowHeaderWrapping": false,
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
-      "columnType": "text",
+      "columnType": "date",
       "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"date_traitement\"])) : date_traitement })()}}",
       "currencyCode": "USD",
       "decimals": 0,
@@ -442,6 +448,7 @@
       "label": "date_traitement",
       "notation": "standard",
       "originalId": "date_traitement",
+      "outputFormat": "DD/MM/YYYY",
       "sticky": "",
       "textColor": "",
       "textSize": "0.875rem",
@@ -702,12 +709,12 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"statut\"])) : statut })()}}",
+      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => ( currentRow.statut === 'VALIDEE' ? '✅ Validée' : currentRow.statut === 'REFUSEE' ? '❌ Refusée' : '⏳ En attente' )) :  currentRow.statut === 'VALIDEE' ? '✅ Validée' : currentRow.statut === 'REFUSEE' ? '❌ Refusée' : '⏳ En attente'  })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
       "enableSort": true,
-      "fontStyle": "",
+      "fontStyle": "BOLD",
       "horizontalAlignment": "LEFT",
       "id": "statut",
       "index": 12,
@@ -723,7 +730,7 @@
       "notation": "standard",
       "originalId": "statut",
       "sticky": "",
-      "textColor": "",
+      "textColor": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  currentRow.statut === 'VALIDEE' ? '#16a34a' :\n  currentRow.statut === 'REFUSEE' ? '#dc2626' :\n  '#d97706'\n)) : \n  currentRow.statut === 'VALIDEE' ? '#16a34a' :\n  currentRow.statut === 'REFUSEE' ? '#dc2626' :\n  '#d97706'\n })()}}",
       "textSize": "0.875rem",
       "thousandSeparator": true,
       "validation": {},
