@@ -2,7 +2,7 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 26,
+  "bottomRow": 29,
   "boxShadow": "none",
   "defaultOptionValue": "JOURNEE",
   "dynamicBindingPathList": [
@@ -11,16 +11,25 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicHeight": "FIXED",
   "dynamicPropertyPathList": [
     {
       "key": "sourceData"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicTriggerPathList": [],
-  "isDisabled": false,
+  "isDisabled": "{{ Date_Abs_Debut.selectedDate.slice(0, 10) !== Date_Abs_Fin.selectedDate.slice(0, 10) }}",
   "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
@@ -50,8 +59,8 @@
   "responsiveBehavior": "fill",
   "rightColumn": 63,
   "serverSideFiltering": false,
-  "sourceData": "[\n  { \"label\": \"Journée entière\", \"value\": \"JOURNEE\" },\n  { \"label\": \"Matin uniquement\", \"value\": \"MATIN\" },\n  { \"label\": \"Après-midi uniquement\", \"value\": \"APREM\" }\n]",
-  "topRow": 19,
+  "sourceData": "{{\n  (Date_Abs_Debut.selectedDate.slice(0, 10) === Date_Abs_Fin.selectedDate.slice(0, 10))\n  ? [\n      { \"label\": \"Journée entière\", \"value\": \"JOURNEE\" },\n      { \"label\": \"Matin uniquement\", \"value\": \"MATIN\" },\n      { \"label\": \"Après-midi uniquement\", \"value\": \"APREM\" }\n    ]\n  : [\n      { \"label\": \"Journée entière\", \"value\": \"JOURNEE\" }\n    ]\n}}",
+  "topRow": 22,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "71zr3a10ov",

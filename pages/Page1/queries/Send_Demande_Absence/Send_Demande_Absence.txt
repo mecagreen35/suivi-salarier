@@ -1,13 +1,27 @@
 INSERT INTO public.pointage_demandes (
-    "ID_Employe", type_demande, date_concernee, type_absence, periode_absence, commentaire_salarie
+    "ID_Employe", 
+    date_concernee, 
+    type_demande, 
+    type_absence, 
+    periode_absence, 
+    commentaire_salarie, 
+    statut
 )
-SELECT
-    e."ID_Employe",
+SELECT 
+    '{{ Get_Mon_Compteur.data[0].ID_Employe }}', -- (Ou la variable que tu utilises pour l'ID du salarié)
+    d.date_jour,
     'ABSENCE',
-    NULLIF({{ Date_Abs.formattedDate || '' }}::text, '')::date,
-    NULLIF({{ Sel_Type_Abs.selectedOptionValue || '' }}::text, ''),
-    COALESCE(NULLIF({{ Sel_Periode_Abs.selectedOptionValue || '' }}::text, ''), 'JOURNEE'),
-    NULLIF({{ (Inp_Comm_Abs.text || '').trim() }}::text, '')
-FROM public."Employes" e
-WHERE LOWER(TRIM(COALESCE(NULLIF(e."Email_Perso", ''), e."Email"))) = LOWER(TRIM({{ appsmith.user.email }}::text))
-LIMIT 1;
+    '{{ Sel_Type_Abs.selectedOptionValue }}',
+    '{{ Sel_Periode_Abs.selectedOptionValue }}',
+    {{ Inp_Comm_Abs.text ? "'" + Inp_Comm_Abs.text.replace(/'/g, "''") + "'" : "NULL" }},
+    'EN_ATTENTE'
+FROM (
+    -- Cette ligne génère toutes les dates entre le début et la fin
+    SELECT generate_series(
+        '{{ Date_Abs_Debut.selectedDate.slice(0, 10) }}'::date, 
+        '{{ Date_Abs_Fin.selectedDate.slice(0, 10) }}'::date, 
+        '1 day'::interval
+    )::date AS date_jour
+) d
+-- Cette ligne filtre pour ne garder que du Lundi (1) au Vendredi (5) !
+WHERE EXTRACT(ISODOW FROM d.date_jour) <= 5;

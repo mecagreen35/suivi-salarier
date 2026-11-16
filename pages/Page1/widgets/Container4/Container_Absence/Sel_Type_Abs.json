@@ -2,7 +2,7 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 19,
+  "bottomRow": 20,
   "boxShadow": "none",
   "defaultOptionValue": "GREEN",
   "dynamicBindingPathList": [
@@ -51,7 +51,7 @@
   "rightColumn": 63,
   "serverSideFiltering": false,
   "sourceData": "[\n  { \"label\": \"🏖️ Congé payé\", \"value\": \"CONGE\" },\n  { \"label\": \"⚖️ Récupération (heures sup)\", \"value\": \"RECUP\" },\n  { \"label\": \"💊 Arrêt maladie\", \"value\": \"MALADIE\" }\n]",
-  "topRow": 12,
+  "topRow": 13,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "flxebo2o62",
