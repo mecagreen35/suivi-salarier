@@ -8,20 +8,18 @@ INSERT INTO public.pointage_demandes (
     statut
 )
 SELECT 
-    '{{ Get_Mon_Compteur.data[0].ID_Employe }}', -- (Ou la variable que tu utilises pour l'ID du salarié)
+    {{ Get_Mon_Compteur.data[0].ID_Employe }},
     d.date_jour,
     'ABSENCE',
-    '{{ Sel_Type_Abs.selectedOptionValue }}',
-    '{{ Sel_Periode_Abs.selectedOptionValue }}',
-    {{ Inp_Comm_Abs.text ? "'" + Inp_Comm_Abs.text.replace(/'/g, "''") + "'" : "NULL" }},
+    {{ Sel_Type_Abs.selectedOptionValue }},
+    {{ Sel_Periode_Abs.selectedOptionValue }},
+    {{ Inp_Comm_Abs.text || null }},
     'EN_ATTENTE'
 FROM (
-    -- Cette ligne génère toutes les dates entre le début et la fin
     SELECT generate_series(
-        '{{ Date_Abs_Debut.selectedDate.slice(0, 10) }}'::date, 
-        '{{ Date_Abs_Fin.selectedDate.slice(0, 10) }}'::date, 
+        {{ Date_Abs_Debut.selectedDate }}::date, 
+        {{ Date_Abs_Fin.selectedDate }}::date, 
         '1 day'::interval
     )::date AS date_jour
 ) d
--- Cette ligne filtre pour ne garder que du Lundi (1) au Vendredi (5) !
 WHERE EXTRACT(ISODOW FROM d.date_jour) <= 5;
