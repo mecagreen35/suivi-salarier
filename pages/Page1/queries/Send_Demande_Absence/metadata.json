@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO public.pointage_demandes (\n    \"ID_Employe\", \n    date_concernee, \n    type_demande, \n    type_absence, \n    periode_absence, \n    commentaire_salarie, \n    statut\n)\nSELECT \n    {{ Get_Mon_Compteur.data[0].ID_Employe }},\n    d.date_jour,\n    'ABSENCE',\n    {{ Sel_Type_Abs.selectedOptionValue }},\n    {{ Sel_Periode_Abs.selectedOptionValue }},\n    {{ Inp_Comm_Abs.text || null }},\n    'EN_ATTENTE'\nFROM (\n    SELECT generate_series(\n        {{ Date_Abs_Debut.selectedDate }}::date, \n        {{ Date_Abs_Fin.selectedDate }}::date, \n        '1 day'::interval\n    )::date AS date_jour\n) d\nWHERE EXTRACT(ISODOW FROM d.date_jour) <= 5;",
+      "body": "INSERT INTO public.pointage_demandes (\n    \"ID_Employe\", \n    date_concernee, \n    type_demande, \n    type_absence, \n    periode_absence, \n    commentaire_salarie, \n    statut\n)\nSELECT \n    {{ Get_Mon_Compteur.data[0].ID_Employe }},\n    d.date_jour,\n    'ABSENCE',\n    {{ Sel_Type_Abs.selectedOptionValue }},\n    {{ Sel_Periode_Abs.selectedOptionValue }},\n    {{ Inp_Comm_Abs.text || null }},\n    'EN_ATTENTE'\nFROM (\n    SELECT generate_series(\n        {{ moment(Date_Abs_Debut.selectedDate).format('YYYY-MM-DD') }}::date, \n        {{ moment(Date_Abs_Fin.selectedDate).format('YYYY-MM-DD') }}::date, \n        '1 day'::interval\n    )::date AS date_jour\n) d\nWHERE EXTRACT(ISODOW FROM d.date_jour) <= 5;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

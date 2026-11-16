@@ -17,8 +17,8 @@ SELECT
     'EN_ATTENTE'
 FROM (
     SELECT generate_series(
-        {{ Date_Abs_Debut.selectedDate }}::date, 
-        {{ Date_Abs_Fin.selectedDate }}::date, 
+        {{ moment(Date_Abs_Debut.selectedDate).format('YYYY-MM-DD') }}::date, 
+        {{ moment(Date_Abs_Fin.selectedDate).format('YYYY-MM-DD') }}::date, 
         '1 day'::interval
     )::date AS date_jour
 ) d

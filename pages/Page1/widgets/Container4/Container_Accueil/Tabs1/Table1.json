@@ -75,6 +75,7 @@
   ],
   "columnUpdatedAt": 1794689552843,
   "columnWidthMap": {
+    "commentaire": 201,
     "heures_injustifiees_hms": 164,
     "solde_jour_heures": 197,
     "temps_travail_net_hms": 166
